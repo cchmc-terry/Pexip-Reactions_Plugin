@@ -14,22 +14,64 @@ const button = await plugin.ui.addButton({
   icon: IconSVG.Reactions,
   group: [
     {
+      id: Emoji.Angry,
+      position: 'toolbar',
+      tooltip: Emoji.Angry,
+      icon: IconSVG.Angry
+    },
+    {
       id: Emoji.Applause,
       position: 'toolbar',
       tooltip: Emoji.Applause,
       icon: IconSVG.Applause
     },
     {
-      id: Emoji.Love,
+      id: Emoji.EyeRoll,
       position: 'toolbar',
-      tooltip: Emoji.Love,
-      icon: IconSVG.Love
+      tooltip: Emoji.EyeRoll,
+      icon: IconSVG.EyeRoll
     },
     {
-      id: Emoji.Laugh,
+      id: Emoji.Happy,
       position: 'toolbar',
-      tooltip: Emoji.Laugh,
-      icon: IconSVG.Laugh
+      tooltip: Emoji.Happy,
+      icon: IconSVG.Happy
+    },
+    {
+      id: Emoji.Heart,
+      position: 'toolbar',
+      tooltip: Emoji.Heart,
+      icon: IconSVG.Heart
+    },
+    {
+      id: Emoji.Laughing,
+      position: 'toolbar',
+      tooltip: Emoji.Laughing,
+      icon: IconSVG.Laughing
+    },
+    {
+      id: Emoji.Sad,
+      position: 'toolbar',
+      tooltip: Emoji.Sad,
+      icon: IconSVG.Sad
+    },
+    {
+      id: Emoji.Surprised,
+      position: 'toolbar',
+      tooltip: Emoji.Surprised,
+      icon: IconSVG.Surprised
+    },
+    {
+      id: Emoji.ThumbDown,
+      position: 'toolbar',
+      tooltip: Emoji.ThumbDown,
+      icon: IconSVG.ThumbDown
+    },
+    {
+      id: Emoji.ThumbUp,
+      position: 'toolbar',
+      tooltip: Emoji.ThumbUp,
+      icon: IconSVG.ThumbUp
     }
   ]
 })
@@ -41,10 +83,10 @@ button.onClick.add(async ({ buttonId }) => {
         reaction: buttonId
       }
     })
-    await plugin.ui.showToast({
-      message: `You reacted with ${getAsciiIcon(buttonId)}`,
-      isInterrupt: true
-    })
+//    await plugin.ui.showToast({
+//      message: `You reacted with ${getAsciiIcon(buttonId)}`,
+//      isInterrupt: true
+//    })
     showReactionGif(buttonId)
   } catch (e) {
     console.error(e)
@@ -64,14 +106,35 @@ plugin.events.applicationMessage.add(async (appMessage) => {
 const getAsciiIcon = (reaction: string): string => {
   let reactionIcon: string
   switch (reaction) {
+    case Emoji.Angry:
+      reactionIcon = IconAscii.Angry
+      break
     case Emoji.Applause:
       reactionIcon = IconAscii.Applause
       break
-    case Emoji.Love:
-      reactionIcon = IconAscii.Love
+    case Emoji.EyeRoll:
+      reactionIcon = IconAscii.EyeRoll
       break
-    case Emoji.Laugh:
-      reactionIcon = IconAscii.Laugh
+    case Emoji.Happy:
+      reactionIcon = IconAscii.Happy
+      break
+    case Emoji.Heart:
+      reactionIcon = IconAscii.Heart
+      break
+    case Emoji.Laughing:
+      reactionIcon = IconAscii.Laughing
+      break
+    case Emoji.Sad:
+      reactionIcon = IconAscii.Sad
+      break
+    case Emoji.Surprised:
+      reactionIcon = IconAscii.Surprised
+      break
+    case Emoji.ThumbDown:
+      reactionIcon = IconAscii.ThumbDown
+      break
+    case Emoji.ThumbUp:
+      reactionIcon = IconAscii.ThumbUp
       break
     default:
       throw new Error('Received invalid reaction')
